@@ -1,5 +1,7 @@
 package Arrays101;
 
+import java.util.Arrays;
+
 // A simple definition for a DVD.
 public class DVD {
     public static DVD[] dvdCollection;
@@ -130,5 +132,59 @@ public class DVD {
                 return 0; // For error-handling
             }
         }
+    }
+
+    // *** Introduction Problems Solutions. ***
+    static class Introduction {
+        public static int findMaxConsecutiveOnes(int[] nums) {
+            int longestWindow = 0, currentWindow = 0;
+
+            for (int num : nums) {
+                longestWindow = Math.max(currentWindow = num == 1 ? currentWindow  + 1 : 0, longestWindow);
+            }
+
+            return longestWindow;
+        }
+
+        public static int findNumber(int[] nums) {
+            int count = 0;
+
+            // Constant time solution considering constraints. :)
+            // More general solution can be constructed.
+            for (int num : nums)
+                if ((num > 9 && num < 100) || (num > 999 && num < 10000) || num == 100000)
+                    count++;
+
+            return count;
+        }
+
+        public static int[] sortedSquares(int[] nums) {
+            int len = nums.length;
+            int[] res = new int[len];
+            int start = 0, end = len - 1;
+
+            for (int i = len - 1; i >= 0; i--) {
+                if (Math.abs(nums[start]) > Math.abs(nums[end]))
+                    res[i] = nums[start] * nums[start++];
+                else
+                    res[i] = nums[end] * nums[end--];
+            }
+
+            return res;
+        }
+    }
+
+    public static void solutions() {
+        System.out.println("Max Consecutive Ones");
+        System.out.println(Introduction.findMaxConsecutiveOnes(new int[]{1,1,0,1,1,1}));
+        System.out.println(Introduction.findMaxConsecutiveOnes(new int[]{1,0,1,1,0,1}) + "\n");
+
+        System.out.println("Find Numbers with Even Number of Digits");
+        System.out.println(Introduction.findNumber(new int[]{12,345,2,6,7896}));
+        System.out.println(Introduction.findNumber(new int[]{555,901,482,1771}) + "\n");
+
+        System.out.println("Squares of a Sorted Array");
+        System.out.println(Arrays.toString(Introduction.sortedSquares(new int[]{-4, -1, 0, 3, 10})));
+        System.out.println(Arrays.toString(Introduction.sortedSquares(new int[]{-7, -3, 2, 3, 11})) + "\n");
     }
 }
