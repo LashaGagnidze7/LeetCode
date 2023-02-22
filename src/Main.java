@@ -5,6 +5,6 @@ public class Main {
         // DVD.whatIsAnArray();
         // DVD.accessingElementInArrays();
         // DVD.arrayCapacityVsLength();
-        DVD.solutions();
+        DVD.arrayInsertions();
     }
 }

@@ -16,11 +16,6 @@ public class DVD {
         this.director = director;
     }
 
-    public String toString() {
-        return this.name + ", directed by " + this.director + ", released in " + this.releaseYear;
-    }
-
-
     public static void whatIsAnArray() {
         // The actual cole for creating an Array to hold DVD's.
         dvdCollection = new DVD[15];
@@ -73,7 +68,7 @@ public class DVD {
             // We need to be careful with the 0-indexing. The next square number
             // is given by (i + 1) * (i + 1).
             // Calculate it and insert it into the Array at index i.
-            int square  =(i + 1) * (i + 1);
+            int square = (i + 1) * (i + 1);
             squareNumbers[i] = square;
         }
 
@@ -134,13 +129,105 @@ public class DVD {
         }
     }
 
+    public static void introductionSolutions() {
+        System.out.println("Max Consecutive Ones");
+        System.out.println(Introduction.findMaxConsecutiveOnes(new int[]{1, 1, 0, 1, 1, 1}));
+        System.out.println(Introduction.findMaxConsecutiveOnes(new int[]{1, 0, 1, 1, 0, 1}) + "\n");
+
+        System.out.println("Find Numbers with Even Number of Digits");
+        System.out.println(Introduction.findNumber(new int[]{12, 345, 2, 6, 7896}));
+        System.out.println(Introduction.findNumber(new int[]{555, 901, 482, 1771}) + "\n");
+
+        System.out.println("Squares of a Sorted Array");
+        System.out.println(Arrays.toString(Introduction.sortedSquares(new int[]{-4, -1, 0, 3, 10})));
+        System.out.println(Arrays.toString(Introduction.sortedSquares(new int[]{-7, -3, 2, 3, 11})) + "\n");
+    }
+
+    public static void arrayInsertions() {
+        // Inserting at the End of an Array
+
+        // Declare an integer array of 6 elements
+        int[] intArray = new int[6];
+        int length = 0;
+
+        // Add 3 elements to the Array
+        for (int i = 0; i < 3; i++) {
+            intArray[length] = i;
+            length++;
+        }
+
+
+        // Insert a new element at the end of the Array. Again,
+        // it's important to ensure that there is enough space
+        // in the array for inserting a new element.
+        intArray[length] = 10;
+        length++;
+
+        printArray(intArray);
+
+        // Inserting at the Start of an Array
+
+        // Firstly, we will have to create space for a new element.
+        // We do that by shifting each element one index to the right.
+        // This will firstly move the element at index 3, then 2, then 1, then finally 0.
+        // We need to go backwards to avoid overwriting any elements.
+
+        for (int i = 3; i >= 0; i--) {
+            intArray[i + 1] = intArray[i];
+        }
+
+        // Now that we have created space for the new element,
+        // we can insert it at the beginning.
+        intArray[0] = 20;
+
+        printArray(intArray);
+
+        // Inserting Anywhere in the Array
+
+        // Say we want to insert the element at index 2.
+        // First, we will have to create space for the new element.
+        for (int i = 4; i >= 2; i--) {
+            // Shift each element one position to the right.
+            intArray[i + 1] = intArray[i];
+        }
+
+        // Now thaw we have created space for the new element,
+        // we can insert it at the required index.
+        intArray[2] = 30;
+
+        printArray(intArray);
+    }
+
+    private static void printArray(int[] intArray) {
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println("Index " + i + " contains " + intArray[i]);
+        }
+        System.out.println();
+    }
+
+    public static void insertSolutions() {
+
+    }
+
+    public static void deleteSolutions() {
+
+    }
+
+    public static void searchSolutions() {
+
+    }
+
+    public String toString() {
+        return this.name + ", directed by " + this.director + ", released in " + this.releaseYear;
+    }
+
     // *** Introduction Problems Solutions. ***
     static class Introduction {
         public static int findMaxConsecutiveOnes(int[] nums) {
             int longestWindow = 0, currentWindow = 0;
 
             for (int num : nums) {
-                longestWindow = Math.max(currentWindow = num == 1 ? currentWindow  + 1 : 0, longestWindow);
+                longestWindow = Math.max(currentWindow = num == 1 ? currentWindow + 1 : 0, longestWindow);
             }
 
             return longestWindow;
@@ -152,8 +239,7 @@ public class DVD {
             // Constant time solution considering constraints. :)
             // More general solution can be constructed.
             for (int num : nums)
-                if ((num > 9 && num < 100) || (num > 999 && num < 10000) || num == 100000)
-                    count++;
+                if ((num > 9 && num < 100) || (num > 999 && num < 10000) || num == 100000) count++;
 
             return count;
         }
@@ -164,27 +250,92 @@ public class DVD {
             int start = 0, end = len - 1;
 
             for (int i = len - 1; i >= 0; i--) {
-                if (Math.abs(nums[start]) > Math.abs(nums[end]))
-                    res[i] = nums[start] * nums[start++];
-                else
-                    res[i] = nums[end] * nums[end--];
+                if (Math.abs(nums[start]) > Math.abs(nums[end])) res[i] = nums[start] * nums[start++];
+                else res[i] = nums[end] * nums[end--];
             }
 
             return res;
         }
     }
 
-    public static void solutions() {
-        System.out.println("Max Consecutive Ones");
-        System.out.println(Introduction.findMaxConsecutiveOnes(new int[]{1,1,0,1,1,1}));
-        System.out.println(Introduction.findMaxConsecutiveOnes(new int[]{1,0,1,1,0,1}) + "\n");
+    // *** Inserting, Deleting and Searching Problems Solutions. ***
+    static class InsertDeleteSearch {
+        // *** Inserting Problems Solutions ***
 
-        System.out.println("Find Numbers with Even Number of Digits");
-        System.out.println(Introduction.findNumber(new int[]{12,345,2,6,7896}));
-        System.out.println(Introduction.findNumber(new int[]{555,901,482,1771}) + "\n");
 
-        System.out.println("Squares of a Sorted Array");
-        System.out.println(Arrays.toString(Introduction.sortedSquares(new int[]{-4, -1, 0, 3, 10})));
-        System.out.println(Arrays.toString(Introduction.sortedSquares(new int[]{-7, -3, 2, 3, 11})) + "\n");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
