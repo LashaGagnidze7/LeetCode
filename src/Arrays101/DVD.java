@@ -262,7 +262,9 @@ public class DVD {
     static class InsertDeleteSearch {
         // *** Inserting Problems Solutions ***
 
+        public static void duplicateZeros(int[] arr) {
 
+        }
     }
 }
 
